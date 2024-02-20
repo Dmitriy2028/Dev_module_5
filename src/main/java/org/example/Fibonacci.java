@@ -1,7 +1,11 @@
+package org.example;
+
 import java.util.logging.Logger;
 public class Fibonacci {
-    private static Logger log = Logger.getLogger(Fibonacci.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(Fibonacci.class.getName());
 
+//    Просторова складність: O(1) (використовується постійна кількість пам'яті)
+//    Часова складність: O(n) (де n - номер числа Фібоначчі, яке потрібно обчислити)
     public static int iterativeFibonacci(int n) {
         if (n <= 1)
             return n;
@@ -15,12 +19,16 @@ public class Fibonacci {
         return fib;
     }
 
+//    Просторова складність: O(n) (залежить від глибини рекурсії)
+//    Часова складність: O(2^n) (експоненціальна, оскільки викликається дві функції рекурсивно)
     public static int recursiveFibonacci(int n) {
         if (n <= 1)
             return n;
         return recursiveFibonacci(n - 1) + recursiveFibonacci(n - 2);
     }
 
+//    Просторова складність: O(n) (необхідний масив розміром n для зберігання значень)
+//    Часова складність: O(n) (необхідно виконати n операцій для обчислення всіх значень)
     public static int dynamicProgrammingFibonacci(int n) {
         int[] fib = new int[n + 2];
         fib[0] = 0;
@@ -32,27 +40,23 @@ public class Fibonacci {
     }
 
     public static void main(String[] args) {
-
-
         long startTime;
         long endTime;
 
-        int n = 40;
+        int n = 10;
         startTime = System.currentTimeMillis();
-        System.out.println("Fibonacci of " + n + " is: " + iterativeFibonacci(n));
+        LOGGER.info("Fibonacci of " + n + " is: " + iterativeFibonacci(n));
         endTime = System.currentTimeMillis();
-        System.out.println("Time for iterativeFibonacci = " + (endTime - startTime) + "\n");
+        LOGGER.info("Time for iterativeFibonacci = " + (endTime - startTime) + "\n");
 
         startTime = System.currentTimeMillis();
-        System.out.println("Fibonacci of " + n + " is: " + recursiveFibonacci(n));
+        LOGGER.info("Fibonacci of " + n + " is: " + recursiveFibonacci(n));
         endTime = System.currentTimeMillis();
-        System.out.println("Time for recursiveFibonacci = " + (endTime - startTime) + "\n");
+        LOGGER.info("Time for recursiveFibonacci = " + (endTime - startTime) + "\n");
 
         startTime = System.currentTimeMillis();
-        System.out.println("Fibonacci of " + n + " is: " + dynamicProgrammingFibonacci(n));
+        LOGGER.info("Fibonacci of " + n + " is: " + dynamicProgrammingFibonacci(n));
         endTime = System.currentTimeMillis();
-        System.out.println("Time for dynamicProgrammingFibonacci = " + (endTime - startTime));
+        LOGGER.info("Time for dynamicProgrammingFibonacci = " + (endTime - startTime));
     }
-
-
 }
